@@ -14,7 +14,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: code test
+          command: monitor
           fail-on-issues: false
       - name: Set up Python
         uses: actions/setup-python@v5
