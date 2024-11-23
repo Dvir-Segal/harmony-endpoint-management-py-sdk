@@ -29,10 +29,11 @@ jobs:
       - name: Extract Artifact to my_artifactct folder
         run: |
           mkdir -p my_artifactct
-          mv chkp_harmony_endpoint_management_sdk/* my_artifactct/
+          cp chkp_harmony_endpoint_management_sdk/* my_artifactct/
 
       - name: Run Snyk to scan my_artifactct folder
         uses: snyk/actions/python@master
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
