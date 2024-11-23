@@ -33,7 +33,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: monitor --file=chkp_harmony_endpoint_management_sdk
+          command: monitor --file=chkp_harmony_endpoint_management_sdk.zip
           fail-on-issues: false  # Optional: Adjust depending on your needs
 
       - uses: actions/upload-artifact@v4
