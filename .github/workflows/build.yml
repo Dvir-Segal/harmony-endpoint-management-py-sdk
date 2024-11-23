@@ -29,7 +29,7 @@ jobs:
       - name: Extract ZIP
         run: unzip chkp_harmony_endpoint_management_sdk.zip -d extracted_files
       - name: Snyk Test
-        uses: snyk/actions/test@master
+        uses: snyk/actions/python@master
         continue-on-error: true 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
