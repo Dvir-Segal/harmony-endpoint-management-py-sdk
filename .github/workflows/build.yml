@@ -27,7 +27,7 @@ jobs:
           python ./sdk_generator/generate_sdk.py
           
       - name: Extract ZIP
-        run: unzip chkp_harmony_endpoint_management_sdk.zip -d extracted_files
+        run: unzip chkp_harmony_endpoint_management_sdk -d extracted_files
       - name: Snyk Test
         uses: snyk/actions/python@master
         continue-on-error: true 
