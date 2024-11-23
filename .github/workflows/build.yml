@@ -26,15 +26,13 @@ jobs:
           export BUILD_VERSION=$(python setup.py --version)
           python ./sdk_generator/generate_sdk.py
           
-      - name: Extract ZIP
-        run: unzip chkp_harmony_endpoint_management_sdk -d extracted_files
       - name: Snyk Test
         uses: snyk/actions/python@master
         continue-on-error: true 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with: 
-          command: test --directory extracted_files
+          command: test --file chkp_harmony_endpoint_management_sdk
           fail-on-issues: false
 
       - uses: actions/upload-artifact@v4
