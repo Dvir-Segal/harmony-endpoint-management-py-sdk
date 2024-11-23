@@ -33,6 +33,8 @@ jobs:
 
       - name: Run Snyk to scan my_artifactct folder
         uses: snyk/actions/python@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test  # Correct command to scan directories
           fail-on-issues: false
