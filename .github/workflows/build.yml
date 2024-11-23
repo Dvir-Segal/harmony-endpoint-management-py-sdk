@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Snyk to scan the artifact
         run: |
-          snyk monitor --all-projects --file=chkp_harmony_endpoint_management_sdk
+          snyk monitor --file=chkp_harmony_endpoint_management_sdk
 
 
       - uses: actions/upload-artifact@v4
