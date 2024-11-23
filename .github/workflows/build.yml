@@ -25,22 +25,17 @@ jobs:
           export BUILD_JOB_ID=$GITHUB_RUN_ID
           export BUILD_VERSION=$(python setup.py --version)
           python ./sdk_generator/generate_sdk.py
+        
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chkp_harmony_endpoint_management_sdk
+          path: chkp_harmony_endpoint_management_sdk
 
-      - name: ls_pwd
-        run: |
-          ls
-          pwd
-          
       - name: Snyk Test
         uses: snyk/actions/python@master
         continue-on-error: true 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with: 
-          command: test
+          command: test --file=chkp_harmony_endpoint_management_sdk.zip
           fail-on-issues: false
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: chkp_harmony_endpoint_management_sdk
-          path: chkp_harmony_endpoint_management_sdk
