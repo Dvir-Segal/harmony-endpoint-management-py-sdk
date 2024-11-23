@@ -25,6 +25,11 @@ jobs:
           export BUILD_JOB_ID=$GITHUB_RUN_ID
           export BUILD_VERSION=$(python setup.py --version)
           python ./sdk_generator/generate_sdk.py
+
+      - name: ls_pwd
+        run: |
+          ls
+          pwd
           
       - name: Snyk Test
         uses: snyk/actions/python@master
@@ -32,7 +37,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with: 
-          command: test --file chkp_harmony_endpoint_management_sdk
+          command: test
           fail-on-issues: false
 
       - uses: actions/upload-artifact@v4
