@@ -27,7 +27,7 @@ jobs:
           python ./sdk_generator/generate_sdk.py
 
       - name: Run Snyk to scan uploaded artifact
-        uses: snyk/actions/scan@master  # Use the 'scan' action for artifact scanning
+        uses: snyk/actions/python@master  # Use the 'scan' action for artifact scanning
         with:
           command: analyze file  # Specify the upload command for artifacts
           file_paths: chkp_harmony_endpoint_management_sdk  # Pa
