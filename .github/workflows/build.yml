@@ -26,15 +26,11 @@ jobs:
           export BUILD_VERSION=$(python setup.py --version)
           python ./sdk_generator/generate_sdk.py
 
-      - name: Run Snyk to scan the artifact
-        uses: snyk/actions/python@master
-        continue-on-error: true # To make sure that SARIF upload gets called
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Run Snyk to scan uploaded artifact
+        uses: snyk/actions/scan@master  # Use the 'scan' action for artifact scanning
         with:
-          command: test chkp_harmony_endpoint_management_sdk
-          fail-on-issues: false
-
+          command: analyze file  # Specify the upload command for artifacts
+          file_paths: chkp_harmony_endpoint_management_sdk  # Pa
 
       - uses: actions/upload-artifact@v4
         with:
