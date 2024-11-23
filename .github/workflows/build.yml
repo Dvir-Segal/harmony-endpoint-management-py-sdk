@@ -27,6 +27,16 @@ jobs:
           export BUILD_VERSION=$(python setup.py --version)
           python ./sdk_generator/generate_sdk.py
 
+      - name: Run Snyk to check the zip file for vulnerabilities
+        uses: snyk/actions/python@master
+        continue-on-error: true  # Continue even if Snyk finds issues
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: test
+          target-file: chkp_harmony_endpoint_management_sdk
+          fail-on-issues: false  # Optional: Adjust depending on your needs
+
       - uses: actions/upload-artifact@v4
         with:
           name: chkp_harmony_endpoint_management_sdk
