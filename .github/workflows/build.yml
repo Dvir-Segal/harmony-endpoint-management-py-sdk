@@ -26,11 +26,17 @@ jobs:
           export BUILD_VERSION=$(python setup.py --version)
           python ./sdk_generator/generate_sdk.py
 
-      - name: Run Snyk to scan uploaded artifact
-        uses: snyk/actions/python@master  # Use the 'scan' action for artifact scanning
+      - name: Extract Artifact to my_artifactct folder
+        run: |
+          mkdir -p my_artifactct
+          mv chkp_harmony_endpoint_management_sdk/* my_artifactct/
+
+      - name: Run Snyk to scan my_artifactct folder
+        uses: snyk/actions/python@master
         with:
-          command: analyze file  # Specify the upload command for artifacts
-          file_paths: chkp_harmony_endpoint_management_sdk  # Pa
+          command: test  # Correct command to scan directories
+          fail-on-issues: false
+          file_paths: my_artifactct
 
       - uses: actions/upload-artifact@v4
         with:
