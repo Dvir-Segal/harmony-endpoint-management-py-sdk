@@ -18,16 +18,22 @@ jobs:
 
       - name: Fail build if high severity issues exist
         run: |
-          sudo apt-get install jq
+          # Make the API request and get the result
           result=$(curl -s -u "token:${{ secrets.SONAR_TOKEN }}" \
             "https://sonarcloud.io/api/issues/search?componentKeys=Dvir-Segal_harmony-endpoint-management-py-sdk&severities=CRITICAL,MAJOR")
-          
-          # Extract the total number of high severity issues
+
+          # Output the result to help with debugging
+          echo "SonarCloud API response: $result"
+
+          # Extract the total number of issues
           total_issues=$(echo "$result" | jq '.paging.total')
 
+          # Fail the build if there are any critical or major issues
           if [ "$total_issues" -gt 0 ]; then
-            echo "Build failed: There are $total_issues critical/major issues.";
+            echo "Build failed: There are $total_issues high severity issues (Critical or Major).";
             exit 1
+          else
+            echo "No high severity issues found. Continuing build.";
           fi
       #   uses: snyk/actions/python@master
       #   continue-on-error: true # To make sure that SARIF upload gets called
