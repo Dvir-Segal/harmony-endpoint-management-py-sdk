@@ -39,7 +39,7 @@ jobs:
           name: chkp_harmony_endpoint_management_sdk
           path: chkp_harmony_endpoint_management_sdk
 
-      - uses: aquasecurity/setup-trivy@v1  # Install Trivy
+      - uses: aquasecurity/trivy-action@0.28.0  # Install Trivy
 
       - name: Download SDK Artifact
         uses: actions/download-artifact@v3
