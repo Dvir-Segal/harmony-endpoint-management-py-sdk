@@ -16,19 +16,18 @@ jobs:
             -Dsonar.projectKey=Dvir-Segal_harmony-endpoint-management-py-sdk
             -Dsonar.branch.name=release
 
-      - name: Check for high severity issues in SonarCloud
+      - name: Fail build if high severity issues exist
         run: |
-          result=$(curl -s -X GET -u "token:${{ secrets.SONAR_TOKEN }}" \
-            "https://sonarcloud.io/api/issues/search?componentKeys=Dvir-Segal_harmony-endpoint-management-py-sdk&severities=CRITICAL")
-
-          critical_count=$(echo "$result" | jq '.paging.total')
+          result=$(curl -s -u "token:${{ secrets.SONAR_TOKEN }}" \
+            "https://sonarcloud.io/api/issues/search?componentKeys=Dvir-Segal_harmony-endpoint-management-py-sdk&severities=CRITICAL,MAJOR")
           
-          if [ "$critical_count" -gt 0 ]; then
-            echo "There are $critical_count critical/major issues in the project. Failing the build.";
-            exit 1;
-          else
-            echo "No critical/major issues found. Continuing build.";
-          fi      # - name: Run Snyk to check for vulnerabilities
+          # Extract the total number of high severity issues
+          total_issues=$(echo "$result" | jq '.paging.total')
+
+          if [ "$total_issues" -gt 0 ]; then
+            echo "Build failed: There are $total_issues critical/major issues.";
+            exit 1
+          fi
       #   uses: snyk/actions/python@master
       #   continue-on-error: true # To make sure that SARIF upload gets called
       #   env:
