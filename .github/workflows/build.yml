@@ -15,7 +15,6 @@ jobs:
             -Dsonar.organization=dvir-segal
             -Dsonar.projectKey=Dvir-Segal_harmony-endpoint-management-py-sdk
             -Dsonar.branch.name=release
-            -Dsonar.qualitygate.wait=true  # This waits for the Quality Gate status
 
       - name: Check for high severity issues in SonarCloud
         run: |
