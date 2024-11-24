@@ -25,34 +25,6 @@ jobs:
             -Dsonar.branch.name=main
             -Dsonar.qualitygate.exitonerror=true
 
-      # - name: Check SonarCloud Quality Gate (Fail on High Severity)
-      #   uses: sonarsource/sonarqube-quality-gate-action@master
-      #   env: 
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #   with:
-      #     organization: dvir-segal
-      #     project_key: Dvir-Segal_harmony-endpoint-management-py-sdk
-      #     condition: severity >= 'CRITICAL'
-
-      # - name: Fail build if high severity issues exist
-      #   run: |
-      #     # Make the API request and get the result
-      #     result=$(curl -s -u "token:${{ secrets.SONAR_TOKEN }}" \
-      #       "https://sonarcloud.io/api/issues/search?componentKeys=Dvir-Segal_harmony-endpoint-management-py-sdk&severities=CRITICAL,MAJOR")
-
-      #     # Output the result to help with debugging
-      #     echo "SonarCloud API response: $result"
-
-      #     # Extract the total number of issues
-      #     total_issues=$(echo "$result" | jq '.paging.total')
-
-      #     # Fail the build if there are any critical or major issues
-      #     if [ "$total_issues" -gt 0 ]; then
-      #       echo "Build failed: There are $total_issues high severity issues (Critical or Major).";
-      #       exit 1
-      #     else
-      #       echo "No high severity issues found. Continuing build.";
-      #     fi
       #   uses: snyk/actions/python@master
       #   continue-on-error: true # To make sure that SARIF upload gets called
       #   env:
