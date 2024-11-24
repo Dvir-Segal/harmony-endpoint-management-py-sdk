@@ -14,7 +14,7 @@ jobs:
           args: >
             -Dsonar.organization=dvir-segal
             -Dsonar.projectKey=Dvir-Segal_harmony-endpoint-management-py-sdk
-            -Dsonar.branch.name=master
+            -Dsonar.branch.name=release
       # - name: Run Snyk to check for vulnerabilities
       #   uses: snyk/actions/python@master
       #   continue-on-error: true # To make sure that SARIF upload gets called
