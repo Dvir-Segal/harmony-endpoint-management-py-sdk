@@ -10,6 +10,9 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@master
         env: 
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          sonar.projectKey: 'dvir-segal'    # Use the project key here
+          sonar.organization: 'Dvir-Segal'
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python@master
         continue-on-error: true # To make sure that SARIF upload gets called
