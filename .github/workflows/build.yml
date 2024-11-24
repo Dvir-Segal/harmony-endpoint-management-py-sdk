@@ -18,6 +18,7 @@ jobs:
 
       - name: Fail build if high severity issues exist
         run: |
+          sudo apt-get install jq
           result=$(curl -s -u "token:${{ secrets.SONAR_TOKEN }}" \
             "https://sonarcloud.io/api/issues/search?componentKeys=Dvir-Segal_harmony-endpoint-management-py-sdk&severities=CRITICAL,MAJOR")
           
