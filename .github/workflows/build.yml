@@ -59,8 +59,8 @@ jobs:
       
       - name: Scan ZIP File with Trivy
         run: |
-          sudo apt install unzip
-          unzip chkp_harmony_endpoint_management_sdk.zip -d destination_folder
+          ls
+          unzip chkp_harmony_endpoint_management_sdk -d destination_folder
           cd destination_folder
           ls
 
