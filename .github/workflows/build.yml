@@ -20,9 +20,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN  }}
         with:
           args: >
-            # -Dsonar.organization=myorg
-            # -Dsonar.projectKey=myproject
-            # -Dsonar.branch.name=main
             -Dsonar.qualitygate.exitonerror=true
 
       #   uses: snyk/actions/python@master
