@@ -61,7 +61,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=dvir-segal
-            -Dsonar.projectKey=Dvir-Segal_chkp_harmony_endpoint_management_sdk
+            -Dsonar.projectKey=Dvir-Segal_harmony-endpoint-management-py-sdk
             -Dsonar.branch.name=release
             -Dsonar.sources=chkp_harmony_endpoint_management_sdk
             -Dsonar.projectBasedir=chkp_harmony_endpoint_management_sdk
