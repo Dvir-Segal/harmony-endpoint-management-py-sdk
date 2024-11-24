@@ -39,10 +39,12 @@ jobs:
           name: chkp_harmony_endpoint_management_sdk
           path: chkp_harmony_endpoint_management_sdk
 
-      - uses: aquasecurity/trivy-action@0.0.6  # Install Trivy
+      - name: Install Trivy
+        run: |
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.39.2/trivy_0.39.2_Linux-64bit.deb
+          sudo dpkg -i trivy_0.39.2_Linux-64bit.deb
 
       - if: success()  # Optional: Only run Trivy scan if build succeeds
         name: Scan ZIP File with Trivy
         run: |
           trivy fs chkp_harmony_endpoint_management_sdk.zip
-          # Optional: Customize the scan command with Trivy flags
