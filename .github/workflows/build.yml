@@ -18,6 +18,8 @@ jobs:
 
       - name: Check SonarCloud Quality Gate (Fail on High Severity)
         uses: sonarsource/sonarqube-quality-gate-action@master
+        env: 
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           organization: dvir-segal
           project_key: Dvir-Segal_harmony-endpoint-management-py-sdk
