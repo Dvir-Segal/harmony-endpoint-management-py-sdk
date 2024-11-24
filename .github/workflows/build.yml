@@ -23,7 +23,7 @@ jobs:
         with:
           organization: dvir-segal
           project_key: Dvir-Segal_harmony-endpoint-management-py-sdk
-          condition: severity >= 'BLOCKER'
+          condition: severity >= 'CRITICAL'
 
       # - name: Fail build if high severity issues exist
       #   run: |
