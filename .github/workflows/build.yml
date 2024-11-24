@@ -60,7 +60,7 @@ jobs:
       - name: Scan ZIP File with Trivy
         run: |
           ls
-          cd destination_folder
+          cd chkp_harmony_endpoint_management_sdk
           ls
 
       # - name: Install Trivy
