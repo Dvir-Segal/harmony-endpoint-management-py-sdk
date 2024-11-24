@@ -15,15 +15,16 @@ jobs:
             -Dsonar.organization=dvir-segal
             -Dsonar.projectKey=Dvir-Segal_harmony-endpoint-management-py-sdk
             -Dsonar.branch.name=release
+            -Dsonar.qualitygate.exitonerror=true
 
-      - name: Check SonarCloud Quality Gate (Fail on High Severity)
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        env: 
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          organization: dvir-segal
-          project_key: Dvir-Segal_harmony-endpoint-management-py-sdk
-          condition: severity >= 'CRITICAL'
+      # - name: Check SonarCloud Quality Gate (Fail on High Severity)
+      #   uses: sonarsource/sonarqube-quality-gate-action@master
+      #   env: 
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #   with:
+      #     organization: dvir-segal
+      #     project_key: Dvir-Segal_harmony-endpoint-management-py-sdk
+      #     condition: severity >= 'CRITICAL'
 
       # - name: Fail build if high severity issues exist
       #   run: |
