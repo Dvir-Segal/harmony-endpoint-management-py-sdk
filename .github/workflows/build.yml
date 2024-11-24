@@ -60,7 +60,6 @@ jobs:
       - name: Scan ZIP File with Trivy
         run: |
           ls
-          unzip chkp_harmony_endpoint_management_sdk -d destination_folder
           cd destination_folder
           ls
 
