@@ -54,11 +54,24 @@ jobs:
           path: chkp_harmony_endpoint_management_sdk
 
       
-      - name: Scan ZIP File with Trivy
-        run: |
-          ls
-          cd chkp_harmony_endpoint_management_sdk
-          ls
+      - name: Artifact Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=dvir-segal
+            -Dsonar.projectKey=Dvir-Segal_chkp_harmony_endpoint_management_sdk
+            -Dsonar.branch.name=release
+            -Dsonar.sources=chkp_harmony_endpoint_management_sdk
+            -Dsonar.projectBasedir=chkp_harmony_endpoint_management_sdk
+
+      - uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.qualitygate.exitonerror=true
 
       # - name: Install Trivy
       #   run: |
