@@ -17,7 +17,7 @@ jobs:
             -Dsonar.branch.name=release
 
       - name: Check SonarCloud Quality Gate (Fail on High Severity)
-        uses: SonarSource/sonarcloud-quality-gate@master
+        uses: sonarsource/sonarqube-quality-gate-action@master
         with:
           organization: dvir-segal
           project_key: Dvir-Segal_harmony-endpoint-management-py-sdk
