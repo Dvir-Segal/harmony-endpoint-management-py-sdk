@@ -15,7 +15,21 @@ jobs:
             -Dsonar.organization=dvir-segal
             -Dsonar.projectKey=Dvir-Segal_harmony-endpoint-management-py-sdk
             -Dsonar.branch.name=release
-      # - name: Run Snyk to check for vulnerabilities
+            -Dsonar.qualitygate.wait=true  # This waits for the Quality Gate status
+
+      - name: Check for high severity issues in SonarCloud
+        run: |
+          result=$(curl -s -X GET -u "token:${{ secrets.SONAR_TOKEN }}" \
+            "https://sonarcloud.io/api/issues/search?componentKeys=Dvir-Segal_harmony-endpoint-management-py-sdk&severities=CRITICAL")
+
+          critical_count=$(echo "$result" | jq '.paging.total')
+          
+          if [ "$critical_count" -gt 0 ]; then
+            echo "There are $critical_count critical/major issues in the project. Failing the build.";
+            exit 1;
+          else
+            echo "No critical/major issues found. Continuing build.";
+          fi      # - name: Run Snyk to check for vulnerabilities
       #   uses: snyk/actions/python@master
       #   continue-on-error: true # To make sure that SARIF upload gets called
       #   env:
