@@ -38,22 +38,14 @@ jobs:
           name: chkp_harmony_endpoint_management_sdk
           path: chkp_harmony_endpoint_management_sdk
 
-      # - name: Install Trivy
-      #   run: |
-      #     wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
-      #     sudo dpkg -i trivy_0.18.3_Linux-64bit.deb
+      - name: Install Trivy
+        run: |
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
+          sudo dpkg -i trivy_0.18.3_Linux-64bit.deb
 
 
-      # - if: success()  # Optional: Only run Trivy scan if build succeeds
-      #   name: Scan ZIP File with Trivy
-      #   run: |
-      #     trivy fs chkp_harmony_endpoint_management_sdk
-
-      - name: Run Trivy vulnerability scanner on myfile.zip
-        uses: aquasecurity/trivy-action@master
-        with:
-            scan-type: 'fs'               # File system scan
-            ignore-unfixed: true           # Ignore unfixed vulnerabilities
-            format: 'table'                # Output format as table (for terminal display)
-            skip-setup-trivy: true         # Skip setting up Trivy, assuming it's pre-installed
-            target: 'chkp_harmony_endpoint_management_sdk.zip'       
+      - if: success()  # Optional: Only run Trivy scan if build succeeds
+        name: Scan ZIP File with Trivy
+        run: |
+          trivy fs --format table chkp_harmony_endpoint_management_sdk
+    
