@@ -15,7 +15,7 @@ jobs:
             -Dsonar.organization=dvir-segal
             -Dsonar.projectKey=Dvir-Segal_harmony-endpoint-management-py-sdk
             -Dsonar.branch.name=release
-      - uses: sonarsource/sonarqube-quality-gate-action@master   
+      - uses: sonarsource/sonarqube-quality-gate-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN  }}
         with:
