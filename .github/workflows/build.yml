@@ -55,7 +55,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=dvir-segal
-            -Dsonar.projectKey=Dvir-Segal_frontend-maven-plugin
+            -Dsonar.projectKey=Dvir-Segal_artifact
             -Dsonar.branch.name=master
             -Dsonar.sources=chkp_harmony_endpoint_management_sdk
             -Dsonar.projectBasedir=chkp_harmony_endpoint_management_sdk
