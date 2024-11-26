@@ -21,20 +21,6 @@ jobs:
         with:
           args: >
             -Dsonar.qualitygate.exitonerror=true
-
-      #   uses: snyk/actions/python@master
-      #   continue-on-error: true # To make sure that SARIF upload gets called
-      #   env:
-      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      #   with:
-      #     args: --sarif-file-output=snyk.sarif
-      #     command: code test
-      #     fail-on-issues: false
-          
-      # - name: Upload result to GitHub Code Scanning
-      #   uses: github/codeql-action/upload-sarif@v2
-      #   with:
-      #     sarif_file: snyk.sarif
           
       - name: Set up Python
         uses: actions/setup-python@v5
